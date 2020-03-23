@@ -1,9 +1,10 @@
 <?php
-
+    #doing server side validation. It is necessary in case jquery validation in somehow bypassed.
+    # $error and $success are used for storing the error or success methods.
     $error = ""; $successMessage = "";
 
     if ($_POST) {
-        
+        #if the email field in POST is empty
         if (!$_POST["email"]) {
             
             $error .= "An email address is required.<br>";
@@ -27,7 +28,7 @@
             $error .= "The email address is invalid.<br>";
             
         }
-        
+        #alert-danger is a class of bootstrap that allows error to be shown in a red box. 
         if ($error != "") {
             
             $error = '<div class="alert alert-danger" role="alert"><p>There were error(s) in your form:</p>' . $error . '</div>';
@@ -106,7 +107,7 @@
           
           
     <script type="text/javascript">
-          
+          //jquery validation
           $("form").submit(function(e) {
               
               var error = "";
@@ -133,10 +134,11 @@
                   
                  $("#error").html('<div class="alert alert-danger" role="alert"><p><strong>There were error(s) in your form:</strong></p>' + error + '</div>');
                   
+                  //false here signifies that nothing has to be with the submit button
                   return false;
                   
               } else {
-                  
+                  // Adding true here prevents the submit button to be clicked twice
                   return true;
                   
               }
